@@ -5,7 +5,7 @@ import seaborn as sns
 import pandas as pd
 from sklearn.preprocessing import scale
 
-#Read in the data, specifically sheet 
+#Read in the data, specifying sheet and row/cols
 dataSet = pd.read_excel(r'Covidata\WHO_COVID_Excess_Deaths_EstimatesByIncome.xlsx', "Deaths by year and month", usecols="A:J", skiprows=11)
 #print(dataSet)
 #What exists or does not exist within the dataset
@@ -16,6 +16,10 @@ nullInfo = dataSet.isnull()
 #Lets make some terms more readable
 
 dataSet.income.replace(['LIC', 'LMIC', 'UMIC', 'HIC'], ['Low-Income', 'Lower-Middle', 'Upper-Middle', 'High'], inplace=True)
+
+#Lets save a separate csv of this data for Tableau, will comment out for now to avoid repetition
+
+#dataSet.to_csv('dataSet.csv')
 
 #Now that we have cleaned up the data to be a bit more understandable, lets go for visualization
 sns.set(style="darkgrid")
